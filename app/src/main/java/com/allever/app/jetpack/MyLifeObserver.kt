@@ -5,7 +5,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.allever.app.jetpack.ext.logd
 
-class MyLifeObserver : LifecycleObserver {
+class MyLifeObserver(val lifecycle: Lifecycle) : LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onActivityStart() {
