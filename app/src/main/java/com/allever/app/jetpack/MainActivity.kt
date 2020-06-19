@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        lifecycle.addObserver(MyLifeObserver())
+
         mSp = getPreferences(Context.MODE_PRIVATE)
         val count = mSp.getInt("count", 0)
 
