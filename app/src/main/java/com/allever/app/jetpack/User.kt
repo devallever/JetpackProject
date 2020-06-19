@@ -1,3 +1,12 @@
 package com.allever.app.jetpack
 
-data class User(var firstName: String, var lastName: String, var age: Int)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class User(var firstName: String, var lastName: String, var age: Int) {
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0L
+
+}

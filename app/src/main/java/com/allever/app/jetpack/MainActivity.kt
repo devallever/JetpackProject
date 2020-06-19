@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.allever.app.jetpack.ext.logd
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +38,38 @@ class MainActivity : AppCompatActivity() {
         btnGetUser.setOnClickListener {
             val userId = (0..100).random().toString()
             mViewModel.getUser(userId)
+        }
+
+        val userDao = AppDatabase.getDataBase(this).userDao()
+        val user1 = User("Allever", "Deng", 20)
+        val user2 = User("Winchen", "Deng", 12)
+        btnAddUser.setOnClickListener {
+            thread {
+                user1.id = userDao.insert(user1)
+                user2.id = userDao.insert(user2)
+            }
+        }
+
+        btnUpdateUser.setOnClickListener {
+            thread {
+                user1.age = 40
+                userDao.update(user1)
+            }
+        }
+
+        btnDeleteUser.setOnClickListener {
+            thread {
+                userDao.delete(user1)
+            }
+        }
+
+        btnQueryUser.setOnClickListener {
+            thread {
+                val listUser = userDao.listAll()
+                listUser.map {
+                    logd("${it.firstName} ${it.lastName} ${it.age}")
+                }
+            }
         }
 
         mViewModel.counter.observe(this, Observer {

@@ -32,4 +32,25 @@
         android:layout_height="wrap_content"
         android:text="Get User" />
 
+    <Button
+        android:id="@+id/btnAddUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add User" />
+    <Button
+        android:id="@+id/btnUpdateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update User" />
+    <Button
+        android:id="@+id/btnDeleteUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete User" />
+    <Button
+        android:id="@+id/btnQueryUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Query All User" />
+
 </LinearLayout>
