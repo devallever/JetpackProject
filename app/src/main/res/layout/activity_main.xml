@@ -20,4 +20,10 @@
         android:layout_height="wrap_content"
         android:text="Plus One" />
 
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear" />
+
 </LinearLayout>
