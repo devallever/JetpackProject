@@ -8,8 +8,12 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel(count: Int) : ViewModel() {
 
-    private val userLiveData = MutableLiveData<User>()
+    private val userIdLiveData = MutableLiveData<String>()
+    val user : LiveData<User> = Transformations.switchMap(userIdLiveData, Function {
+        Repository.getUser(it)
+    })
 
+    private val userLiveData = MutableLiveData<User>()
     val userName: LiveData<String> = Transformations.map(userLiveData) {
         "${it.firstName} ${it.lastName}"
     }
@@ -34,5 +38,9 @@ class MainViewModel(count: Int) : ViewModel() {
 
     fun clear() {
         _counter.value = 0
+    }
+
+    fun getUser(userId: String) {
+        userIdLiveData.value = userId
     }
 }

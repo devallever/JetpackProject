@@ -33,8 +33,17 @@ class MainActivity : AppCompatActivity() {
             mViewModel.clear()
         }
 
+        btnGetUser.setOnClickListener {
+            val userId = (0..100).random().toString()
+            mViewModel.getUser(userId)
+        }
+
         mViewModel.counter.observe(this, Observer {
             tvCounter.text = it.toString()
+        })
+
+        mViewModel.user.observe(this, Observer {
+            tvCounter.text = it.firstName
         })
 
         refreshUI()
