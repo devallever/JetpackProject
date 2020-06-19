@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        lifecycle.addObserver(MyLifeObserver())
+        lifecycle.addObserver(MyLifeObserver(lifecycle))
 
         mSp = getPreferences(Context.MODE_PRIVATE)
         val count = mSp.getInt("count", 0)
@@ -26,14 +26,16 @@ class MainActivity : AppCompatActivity() {
             .get(MainViewModel::class.java)
 
         btnAdd.setOnClickListener {
-            mViewModel.counter++
-            refreshUI()
+            mViewModel.plusOne()
         }
 
         btnClear.setOnClickListener {
-            mViewModel.counter = 0
-            refreshUI()
+            mViewModel.clear()
         }
+
+        mViewModel.counter.observe(this, Observer {
+            tvCounter.text = it.toString()
+        })
 
         refreshUI()
 
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        mSp.edit().putInt("count", mViewModel.counter).apply()
+        mSp.edit().putInt("count", mViewModel.counter.value ?: 0).apply()
     }
 
     private fun refreshUI() {
