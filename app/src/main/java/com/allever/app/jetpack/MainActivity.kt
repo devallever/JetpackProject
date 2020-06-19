@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,8 +20,7 @@ class MainActivity : AppCompatActivity() {
         mSp = getPreferences(Context.MODE_PRIVATE)
         val count = mSp.getInt("count", 0)
 
-        mViewModel = ViewModelProviders
-            .of(this, MainViewModelFactory(count))
+        mViewModel = ViewModelProvider(this, MainViewModelFactory(count))
             .get(MainViewModel::class.java)
 
         btnAdd.setOnClickListener {
