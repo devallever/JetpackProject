@@ -14,9 +14,10 @@ import kotlinx.coroutines.launch
 import kotlin.math.log
 
 class BindingViewModel: ViewModel() {
-//    private val translationResponseLiveData  = MutableLiveData<TranslationResponse>()
+    val translationResponseLiveData  = MutableLiveData<TranslationResponse>()
 //    val translationResponse: LiveData<TranslationResponse> = translationResponseLiveData
     val trans = ObservableField<String>()
+    val translationResponse = ObservableField<TranslationResponse>()
 
     private val mJob = Job()
     private val mMainScope = CoroutineScope(Dispatchers.Main + mJob)
@@ -28,8 +29,9 @@ class BindingViewModel: ViewModel() {
                 logd("请求失败")
                 return@launch
             }
-//            translationResponseLiveData.value = response
+            translationResponseLiveData.value = response
             trans.set(response.sentences?.get(0)?.trans)
+            translationResponse.set(response)
             logd("请求结果： $response")
         }
     }

@@ -38,9 +38,8 @@
                     android:id="@+id/tvTranslateResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{bindingViewModel.trans}"
-                    android:layout_margin="5dp"
-                    />
+                    android:text="@{bindingViewModel.translationResponse.sentences.get(0).trans}"
+                    android:layout_margin="5dp" />
             </LinearLayout>
 
         </RelativeLayout>
