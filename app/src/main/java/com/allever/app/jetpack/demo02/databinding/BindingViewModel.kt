@@ -1,6 +1,5 @@
 package com.allever.app.jetpack.demo02.databinding
 
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,13 +10,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 class BindingViewModel: ViewModel() {
-    val translationResponseLiveData  = MutableLiveData<TranslationResponse>()
-//    val translationResponse: LiveData<TranslationResponse> = translationResponseLiveData
-    val trans = ObservableField<String>()
-    val translationResponse = ObservableField<TranslationResponse>()
+    private val translationResponseLiveData  = MutableLiveData<TranslationResponse>()
+    val translationResponse: LiveData<TranslationResponse> = translationResponseLiveData
 
     private val mJob = Job()
     private val mMainScope = CoroutineScope(Dispatchers.Main + mJob)
@@ -30,8 +26,6 @@ class BindingViewModel: ViewModel() {
                 return@launch
             }
             translationResponseLiveData.value = response
-            trans.set(response.sentences?.get(0)?.trans)
-            translationResponse.set(response)
             logd("请求结果： $response")
         }
     }

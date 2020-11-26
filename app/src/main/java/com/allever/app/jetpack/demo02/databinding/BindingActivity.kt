@@ -14,7 +14,7 @@ class BindingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityDataBindingBinding = DataBindingUtil.setContentView(this, R.layout.activity_data_binding)
-
+        binding.lifecycleOwner = this
         mViewModel = ViewModelProvider(this).get(BindingViewModel::class.java)
         binding.bindingViewModel = mViewModel
         btnRequest.setOnClickListener {
