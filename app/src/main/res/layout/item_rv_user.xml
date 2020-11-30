@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageUrl="@{user.header}"
+            app:errorRes="@{@drawable/ic_launcher}"/>
+
         <TextView
             android:id="@+id/tvId"
             android:layout_width="wrap_content"
@@ -19,7 +28,7 @@
             android:layout_margin="2dp"
             android:text="@{user.id}"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toRightOf="@+id/ivHeader"/>
 
         <TextView
             android:id="@+id/tvName"
@@ -28,7 +37,7 @@
             android:layout_margin="2dp"
             android:text="@{user.name}"
             app:layout_constraintTop_toBottomOf="@+id/tvId"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toRightOf="@+id/ivHeader"/>
         <TextView
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
@@ -36,7 +45,7 @@
             android:layout_margin="2dp"
             android:text="@{user.email}"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toRightOf="@+id/ivHeader"/>
 
         <View
             android:layout_width="match_parent"

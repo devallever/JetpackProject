@@ -21,6 +21,11 @@ class RvBindingActivity: AppCompatActivity() {
             userItem.id = index.toString()
             userItem.name = "张$index"
             userItem.email = "$index@qq.com"
+            userItem.header = if (index % 2 == 0) {
+                "https://csdnimg.cn/medal/qiandao1@240.png"
+            } else {
+                ""
+            }
             userList.add(userItem)
             adapter.notifyDataSetChanged()
             index++
