@@ -1,5 +1,7 @@
 package com.allever.app.jetpack.demo02.databinding
 
+import androidx.databinding.Observable
+import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
