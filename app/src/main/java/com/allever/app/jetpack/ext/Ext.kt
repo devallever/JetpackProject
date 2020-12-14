@@ -11,3 +11,14 @@ fun logd(content: String?) {
 fun loge(content: String?) {
     Log.d(TAG, content)
 }
+
+fun logTid() {
+    android.os.Process.myTid()
+}
+
+fun logPid() {
+    android.os.Process.myPid()
+}
+
+fun getTid(): Int = android.os.Process.myTid()
+fun getPid(): Int = android.os.Process.myPid()
