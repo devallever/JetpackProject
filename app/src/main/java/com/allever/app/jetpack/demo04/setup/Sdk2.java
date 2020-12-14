@@ -7,7 +7,7 @@ import android.util.Log;
  * @author allever
  */
 public class Sdk2 {
-    private static final String TAG = Sdk1.class.getSimpleName();
+    private static final String TAG = Sdk2.class.getSimpleName();
 
     private Sdk2() {
         log("init " + TAG);

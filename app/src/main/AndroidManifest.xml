@@ -20,6 +20,9 @@
 			android:exported="false">
 			<meta-data  android:name="com.allever.app.jetpack.demo04.setup.Sdk1Initializer"
 				android:value="androidx.startup"/>
+
+			<meta-data  android:name="com.allever.app.jetpack.demo04.setup.Sdk3Initializer"
+				android:value="androidx.startup"/>
 		</provider>
 
 		<activity android:name=".demo04.setup.SetupDemoActivity">
