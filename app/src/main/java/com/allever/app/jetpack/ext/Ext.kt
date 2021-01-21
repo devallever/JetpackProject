@@ -5,10 +5,12 @@ import android.util.Log
 private const val TAG = "ILogger"
 
 fun logd(content: String?) {
+    content?:return
     Log.d(TAG, content)
 }
 
 fun loge(content: String?) {
+    content?:return
     Log.d(TAG, content)
 }
 

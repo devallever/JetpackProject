@@ -25,7 +25,7 @@
 				android:value="androidx.startup"/>
 		</provider>
 
-		<activity android:name=".demo04.setup.SetupDemoActivity">
+		<activity android:name=".demo05.databinding.MainActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 
