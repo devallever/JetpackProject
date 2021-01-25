@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.allever.app.jetpack.R
 import com.allever.app.jetpack.databinding.ActivityMainDemo05Binding
+import com.allever.app.jetpack.ext.toast
 import kotlinx.android.synthetic.main.activity_main_demo_05.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,12 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = mViewModel
         mViewModel.initTestData()
         initUserItemData()
+        binding.includeBtn.btnInclude.setOnClickListener {
+            toast("include button")
+        }
+        val fm = supportFragmentManager
+        val transaction = fm.beginTransaction()
+        transaction.add(R.id.fragmentContainer, BindingFragment()).commit()
     }
 
     private fun initUserItemData() {

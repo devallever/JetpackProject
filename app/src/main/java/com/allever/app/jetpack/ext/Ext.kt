@@ -1,6 +1,8 @@
 package com.allever.app.jetpack.ext
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 
 private const val TAG = "ILogger"
 
@@ -24,3 +26,7 @@ fun logPid() {
 
 fun getTid(): Int = android.os.Process.myTid()
 fun getPid(): Int = android.os.Process.myPid()
+
+fun Context.toast(msg: String) {
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+}
