@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.allever.app.jetpack.ext.logd
+import com.allever.app.jetpack.ext.log
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             thread {
                 val listUser = userDao.listAll()
                 listUser.map {
-                    logd("${it.firstName} ${it.lastName} ${it.age}")
+                    log("${it.firstName} ${it.lastName} ${it.age}")
                 }
             }
         }

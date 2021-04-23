@@ -26,13 +26,15 @@
 				android:value="androidx.startup"/>
 		</provider>
 
-		<activity android:name=".demo06.camerax.CameraXTestActivity">
+		<activity android:name=".demo07.lifecycle.LifecycleDemoActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+		<activity android:name=".demo07.lifecycle.SecondActivity"/>
+		<activity android:name=".demo07.lifecycle.LifecycleDemoOtherActivity"/>
 	</application>
 
 </manifest>
