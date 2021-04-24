@@ -26,7 +26,7 @@
 				android:value="androidx.startup"/>
 		</provider>
 
-		<activity android:name=".demo07.lifecycle.LifecycleDemoActivity">
+		<activity android:name=".demo08.paging.PagingActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 
