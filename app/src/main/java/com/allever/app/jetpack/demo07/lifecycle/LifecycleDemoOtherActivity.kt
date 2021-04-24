@@ -14,6 +14,8 @@ class LifecycleDemoOtherActivity : AppCompatActivity() {
 
     private lateinit var ownerObserverString: OwnerObserver
     private lateinit var ownerObserverInt: OwnerObserver
+    private lateinit var ownerObserverInt2: OwnerObserver
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,11 @@ class LifecycleDemoOtherActivity : AppCompatActivity() {
             log("LifecycleDemoOtherActivity -> LiveDataBus: int = $it")
         })
 
+       ownerObserverInt2 = OwnerObserver(this, Observer<Int> {
+            log("LifecycleDemoOtherActivity -> LiveDataBus: int 2 = $it")
+        })
+
+
         btnOpenSecond.setOnClickListener {
             val intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
@@ -37,12 +44,15 @@ class LifecycleDemoOtherActivity : AppCompatActivity() {
 
         LiveDataBus.getIns().register("2", ownerObserverInt)
 
+        LiveDataBus.getIns().register("2", ownerObserverInt2)
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
         LiveDataBus.getIns().unRegister("1", ownerObserverString)
         LiveDataBus.getIns().unRegister("2", ownerObserverInt)
+        LiveDataBus.getIns().unRegister("2", ownerObserverInt2)
     }
 
 }

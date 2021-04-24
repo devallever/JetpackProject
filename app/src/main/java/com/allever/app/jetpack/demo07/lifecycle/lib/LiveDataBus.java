@@ -86,16 +86,22 @@ public class LiveDataBus {
     public <T> void setLiveData(String key, MutableLiveData<T> liveData) {
         keyLiveDataMap.put(key, liveData);
         Log.d(TAG, "setLiveData: keyLiveDataMap.size = " + keyLiveDataMap.size());
+        Log.d(TAG, "setLiveData: key -> " + key);
 
         List<OwnerObserver> ownerObserverList = unRegisterKeyOwnerObserverListMap.get(key);
+        List<OwnerObserver> registeredList = keyOwnerObserverListMap.get(key);
         if (ownerObserverList != null) {
-            List<OwnerObserver> registeredList = keyOwnerObserverListMap.get(key);
+            Log.d(TAG, "setLiveData: 没注册的ownerObserverList.size = " + ownerObserverList.size());
             if (registeredList != null) {
+                Log.d(TAG, "setLiveData: 已注册的registeredList.size = " + registeredList.size());
                 registeredList.addAll(ownerObserverList);
+                Log.d(TAG, "setLiveData: 添加未注册的之后 - > 已注册的registeredList.size = " + registeredList.size());
             }
             keyOwnerObserverListMap.put(key, registeredList);
             unRegisterKeyOwnerObserverListMap.remove(key);
+        }
 
+        if (registeredList != null) {
             for (OwnerObserver ownerObserver : registeredList) {
                 liveData.observe(ownerObserver.getLifecycleOwner(), ownerObserver.getObserver());
             }

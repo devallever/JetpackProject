@@ -14,6 +14,7 @@ class LifecycleDemoActivity : AppCompatActivity() {
 
     private lateinit var ownerObserverString: OwnerObserver
     private lateinit var ownerObserverInt: OwnerObserver
+    private lateinit var ownerObserverString2: OwnerObserver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,10 @@ class LifecycleDemoActivity : AppCompatActivity() {
 
         ownerObserverString = OwnerObserver(this, Observer<String> {
             log("LifecycleDemoActivity -> LiveDataBus: string = $it")
+        })
+
+        ownerObserverString2 = OwnerObserver(this, Observer<String> {
+            log("LifecycleDemoActivity -> LiveDataBus: string2 = $it")
         })
 
         ownerObserverInt = OwnerObserver(this, Observer<Int> {
@@ -33,7 +38,10 @@ class LifecycleDemoActivity : AppCompatActivity() {
         }
 
 
+
         LiveDataBus.getIns().register("1", ownerObserverString)
+
+        LiveDataBus.getIns().register("1", ownerObserverString2)
 
         LiveDataBus.getIns().register("2", ownerObserverInt)
 
@@ -42,6 +50,7 @@ class LifecycleDemoActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         LiveDataBus.getIns().unRegister("1", ownerObserverString)
+        LiveDataBus.getIns().unRegister("1", ownerObserverString2)
         LiveDataBus.getIns().unRegister("2", ownerObserverInt)
     }
 
