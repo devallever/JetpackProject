@@ -9,7 +9,6 @@ import com.allever.app.jetpack.R
 import com.allever.app.jetpack.ext.log
 import kotlinx.android.synthetic.main.activity_main_paging.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.collect
 import kotlin.coroutines.suspendCoroutine
 
@@ -42,15 +41,6 @@ class PagingActivity : AppCompatActivity() {
 
 
             adapter = UserItemAdapter()
-            adapter.addLoadStateListener {
-                if (it.refresh == LoadState.Loading) {
-                    log("show progress")
-                    // show progress view
-                } else {
-                    //hide progress view
-                    log("hide progress")
-                }
-            }
 //            rvUser.adapter = adapter.withLoadStateHeaderAndFooter(
 //                header = HeaderFooterAdapter(adapter),
 //                footer = HeaderFooterAdapter(adapter)
@@ -59,8 +49,13 @@ class PagingActivity : AppCompatActivity() {
             log("当前线程：${android.os.Process.myTid()}")
             val layoutManager = LinearLayoutManager(this@PagingActivity)
             rvUser.layoutManager = layoutManager
-            rvUser.adapter = adapter
-
+            rvUser.adapter = adapter.withLoadStateFooter(
+                footer = HeaderFooterAdapter(adapter)
+            )
+//            rvUser.adapter = adapter.withLoadStateHeaderAndFooter(
+//                header = HeaderFooterAdapter(adapter),
+//                footer = HeaderFooterAdapter(adapter)
+//            )
 
             mViewModel.listData.collect {
                 adapter.submitData(it)
