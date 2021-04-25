@@ -94,4 +94,12 @@ dependencies {
 
     // CameraX View class
     implementation 'androidx.camera:camera-view:1.0.0-alpha20'
+
+    def paging_version = "3.0.0-beta01"
+    //2.1.2
+    //3.0.0-beta01
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version" // For Kotlin use paging-runtime-ktx
+
+    def material_version = "1.0.0"
+    implementation "com.google.android.material:material:$material_version"
 }
