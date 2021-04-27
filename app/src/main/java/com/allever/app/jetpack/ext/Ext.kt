@@ -6,7 +6,7 @@ import android.widget.Toast
 
 private const val TAG = "ILogger"
 
-fun logd(content: String?) {
+fun log(content: String?) {
     content?:return
     Log.d(TAG, content)
 }

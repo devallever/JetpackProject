@@ -1,12 +1,10 @@
 package com.allever.app.jetpack.demo02.databinding
 
-import androidx.databinding.Observable
-import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.allever.app.jetpack.Repository
-import com.allever.app.jetpack.ext.logd
+import com.allever.app.jetpack.ext.log
 import com.allever.app.jetpack.function.network.TranslationResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,11 +22,11 @@ class BindingViewModel: ViewModel() {
         mMainScope.launch {
             val response = Repository.translate(q)
             if (response == null) {
-                logd("请求失败")
+                log("请求失败")
                 return@launch
             }
             translationResponseLiveData.value = response
-            logd("请求结果： $response")
+            log("请求结果： $response")
         }
     }
 }
