@@ -56,11 +56,11 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     //activity-ktx
-    implementation 'androidx.activity:activity-ktx:1.1.0'
+    implementation 'androidx.activity:activity-ktx:1.2.3'
 
     //ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     //LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     //Room
@@ -102,4 +102,12 @@ dependencies {
 
     def material_version = "1.0.0"
     implementation "com.google.android.material:material:$material_version"
+
+    //datastore
+//    implementation("androidx.datastore:datastore:1++")
+//    implementation("androidx.datastore:datastore:1.0.0-rc01")
+//    implementation("androidx.datastore:datastore-core:1.0.0-rc01")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
+//    implementation("androidx.datastore:datastore-preferences-core:1.0.0-rc01")
+
 }

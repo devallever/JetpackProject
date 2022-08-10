@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.userLiveData.observe(this, Observer {
             tvUserAge.text = "${it.age}"
         })
+        viewModel.userLiveData.value = User()
+        viewModel.userLiveData.postValue(User())
 
         btnUpdateUserAge.setOnClickListener {
             viewModel.updateUser(tvUserAge.text.toString().toInt() + 1)

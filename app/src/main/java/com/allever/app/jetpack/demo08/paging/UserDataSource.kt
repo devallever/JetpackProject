@@ -8,6 +8,8 @@ import kotlinx.coroutines.withContext
 
 class UserDataSource: PagingSource<Int, UserItem>() {
 
+    private var pageCount = 1
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserItem> {
         log("load ${params.key}")
         val currentLoadingPageKey = params.key ?: 1
@@ -23,7 +25,7 @@ class UserDataSource: PagingSource<Int, UserItem>() {
 
         val userList = getTestData(currentLoadingPageKey)
         //如果没有了数据， next传null就好了
-        if (currentLoadingPageKey.plus(1) == 10) {
+        if (currentLoadingPageKey.plus(1) == pageCount) {
             return LoadResult.Page(
                 data = userList,
                 prevKey = prevKey,
@@ -46,8 +48,11 @@ class UserDataSource: PagingSource<Int, UserItem>() {
 
     private suspend fun getTestData(pageNum: Int) = withContext(Dispatchers.IO) {
         val result = mutableListOf<UserItem>()
-        for (i in pageNum*10+1..pageNum*10+10) {
-            val user = UserItem(1, "${i}title")
+        val response = WanAnderoidApi.getService().getPageList(pageNum)
+        pageCount = response.data.pageCount
+        val dataList = response.data.datas
+        dataList.map {
+            val user = UserItem(1, it.title)
             result.add(user)
         }
         return@withContext result
